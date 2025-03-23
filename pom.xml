@@ -1,0 +1,210 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>it.desimone</groupId>
+  <artifactId>GestioneTorneo</artifactId>
+  <version>2.3.6</version>
+  <packaging>jar</packaging>
+
+  <name>GestioneTorneo</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+ <!-- 
+
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+ -->
+
+    <project.output>${user.home}\Desktop\GestioneTorneo ${version}</project.output>
+
+  </properties>
+
+	<build> 
+		<finalName>${project.artifactId}</finalName>
+		
+		<plugins>
+		
+		  <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+          <excludes>
+            <exclude>it/desimone/risiko/torneo/batch/ExcelAccessHSSF.java</exclude>
+          </excludes>
+          </configuration>
+        </plugin>
+		
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-dependency-plugin</artifactId>
+			    <executions>
+			        <execution>
+			            <id>copy-dependencies</id>
+			            <phase>prepare-package</phase>
+			            <goals>
+			                <goal>copy-dependencies</goal>
+			            </goals>
+			            <configuration>
+			                <outputDirectory>
+			                    ${project.build.directory}/libs
+			                </outputDirectory>
+			            </configuration>
+			        </execution>
+			    </executions>
+			</plugin>
+			
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-jar-plugin</artifactId>
+			    <configuration>
+			        <archive>
+			            <manifest>
+			                <addClasspath>true</addClasspath>
+			                <classpathPrefix>libs/</classpathPrefix>
+			                <mainClass>
+			                    it.desimone.risiko.torneo.batch.RadGester
+			                </mainClass>
+			            </manifest>
+			        </archive>
+			    </configuration>
+			</plugin>
+	<!-- 
+			<plugin>
+			  <artifactId>maven-assembly-plugin</artifactId>
+			  <version>2.6</version>
+			  <configuration>
+			    <descriptors>
+			      <descriptor>assembly.xml</descriptor>       
+			    </descriptors>
+			              <finalName>resources</finalName>
+			  </configuration>
+			  <executions>
+			    <execution>
+			      <id>make-assembly</id> <
+			      <phase>package</phase> 
+			      <goals>
+			        <goal>single</goal> 
+			      </goals>
+			    </execution>
+			  </executions>
+			</plugin>
+ -->
+		
+			<plugin>
+		        <artifactId>maven-resources-plugin</artifactId>
+		        <version>3.0.2</version>
+		        <executions> 	        
+		          <execution>
+		            <id>copy-resources</id>
+            
+		            <phase>install</phase>
+		            <goals>
+		              <goal>copy-resources</goal>
+		            </goals>
+		            <configuration>
+		               <includeEmptyDirs>true</includeEmptyDirs>
+		              <outputDirectory>${project.output}</outputDirectory>
+		              <resources>          
+		                <resource>
+		                  <directory>/</directory>
+		                  <includes>
+		                  	<include>resources/</include>
+		                  	<include>configuration/</include>
+		                  </includes>
+		                  <excludes>
+		                  	<exclude>resources/*.png</exclude>
+		                  	<exclude>resources/*.pdf</exclude>
+		                  	<exclude>resources/*.xls</exclude>
+		                  	<exclude>resources/*.gitignore</exclude>
+		                  	<exclude>resources/google/.credentials/</exclude>
+		                  </excludes>
+		                  <filtering>false</filtering>
+		                </resource>
+		                <resource>
+		                  <directory>target/</directory>
+		                  <includes>
+		                  	<include>libs/</include>
+		                  	<include>*.jar</include>
+		                  </includes>
+		                  <filtering>false</filtering>
+		                </resource>
+		                <resource>
+		                  <directory>scripts/</directory>
+		                  <filtering>false</filtering>
+		                </resource>		                
+		              </resources>              
+		            </configuration>            
+		          </execution>
+		        </executions>
+		     </plugin>
+		</plugins>
+	</build>
+	
+  <dependencies>
+<!--   
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+ -->    
+ <!--  
+    <dependency>
+    	<groupId>org.apache.poi</groupId>
+    	<artifactId>poi</artifactId> 	
+    	<version>3.7</version>
+	</dependency>
+ -->	
+     <dependency>
+    	<groupId>org.apache.poi</groupId>
+    	<artifactId>poi</artifactId> 	
+    	<version>3.17</version>
+	</dependency>
+ 
+     <dependency>
+    	<groupId>org.apache.poi</groupId>
+    	<artifactId>poi-scratchpad</artifactId> 	
+    	<version>3.17</version>
+	</dependency>
+    
+     <dependency>
+    	<groupId>org.apache.poi</groupId>
+    	<artifactId>poi-ooxml</artifactId> 	
+    	<version>3.17</version>
+	</dependency>
+    
+    <dependency>
+    	<groupId>org.apache.poi</groupId>
+    	<artifactId>poi-ooxml-schemas</artifactId> 	
+    	<version>3.17</version>
+	</dependency>
+   
+    <dependency>
+    	<groupId>com.itextpdf</groupId>
+    	<artifactId>itextpdf</artifactId>
+    	<version>5.1.1</version>
+	</dependency>
+
+  <dependency>
+     <groupId>com.google.api-client</groupId>
+     <artifactId>google-api-client</artifactId>
+     <version>1.23.0</version>
+   </dependency>    
+   <dependency>
+     <groupId>com.google.oauth-client</groupId>
+     <artifactId>google-oauth-client-jetty</artifactId>
+     <version>1.23.0</version>
+   </dependency> 
+
+	 <dependency>
+	    <groupId>com.google.apis</groupId>
+	    <artifactId>google-api-services-drive</artifactId>
+	    <version>v3-rev90-1.23.0</version>
+	</dependency>  
+  </dependencies>
+</project>
