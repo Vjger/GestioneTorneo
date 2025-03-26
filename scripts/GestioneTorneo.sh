@@ -1,5 +1,2 @@
-
-    		#!/bin/bash
-
-    		java -jar GestioneTorneo.jar
-    	
+#!/bin/bash
+java -jar GestioneTorneo.jar
