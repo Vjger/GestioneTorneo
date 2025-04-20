@@ -93,7 +93,7 @@ public class ExcelAccess{
 	public static final String SCHEDA_CLASSIFICA	= "Classifica";
 	public static final String SCHEDA_CLASSIFICA_RIDOTTA	= "Classifica Ridotta";
 	public static final String SCHEDA_CLASSIFICA_A_SQUADRE	= "Classifica a Squadre";
-	public static final String SCHEDA_TURNO_SUFFIX	= "° Turno";
+	public static final String SCHEDA_TURNO_SUFFIX	= "Â° Turno";
 	public static final String SCHEDA_STATISTICHE	= "STATISTICHE";
 		
 	String pathFileExcel;
@@ -219,7 +219,7 @@ public class ExcelAccess{
 				try{
 					giocatore = getGiocatoreFromRow(row);
 				}catch(Exception me){
-					throw new MyException(me,"Riga n° "+(i+1)+" della scheda "+SCHEDA_ISCRITTI);
+					throw new MyException(me,"Riga nï¿½ "+(i+1)+" della scheda "+SCHEDA_ISCRITTI);
 				}
 				if (giocatore != null && giocatore.getId() != null && giocatore.getNome() != null && giocatore.getNome().length() >0){
 					if (!partecipanti || giocatore.getPresenteTorneo()){
@@ -245,7 +245,7 @@ public class ExcelAccess{
 				try{
 					giocatore = getGiocatoreFromRow(row);
 				}catch(Exception me){
-					throw new MyException(me," Riga n° "+(i+1)+" della scheda "+SCHEDA_ISCRITTI);
+					throw new MyException(me," Riga nï¿½ "+(i+1)+" della scheda "+SCHEDA_ISCRITTI);
 				}
 				if (giocatore != null && giocatore.getId() != null && giocatore.getId().equals(id)){
 					return giocatore;
@@ -330,7 +330,7 @@ public class ExcelAccess{
 			schedaClassifica = new SchedaClassifica();
 			//Integer nRows = sheet.getLastRowNum();
 			Iterator it = sheet.rowIterator();
-			it.next(); //Si salta la prima riga che è l'header
+			it.next(); //Si salta la prima riga che ï¿½ l'header
 			int numeroRiga = 1;
 			while (it.hasNext()){
 				numeroRiga++;
@@ -389,7 +389,7 @@ public class ExcelAccess{
 		}else if (tipoCella == Cell.CELL_TYPE_FORMULA){
 			result			= cella.getRichStringCellValue().getString();
 		}else if (tipoCella != Cell.CELL_TYPE_BLANK){
-			MyLogger.getLogger().info("Impossibile leggere la cella della colonna in posizione "+posizioneCella+ " della riga "+ (row.getRowNum()+1)+" perchè di tipo imprevisto: "+tipoCella);
+			MyLogger.getLogger().info("Impossibile leggere la cella della colonna in posizione "+posizioneCella+ " della riga "+ (row.getRowNum()+1)+" perchï¿½ di tipo imprevisto: "+tipoCella);
 		}
 		return result;
 	}
@@ -484,7 +484,7 @@ public class ExcelAccess{
 			//MyLogger.getLogger().finer("Colonna ID Nazionale con valore non numerico al ID "+id+": "+ise.getMessage());
 			//throw new MyException(ise,"Colonna ID Nazionale con valore non numerico");
 		}
-		if (idNazionale == null || idNazionale > 0 || (nome != null && nome.equalsIgnoreCase(GiocatoreDTO.ANONIMO.getNome()) && cognome != null && cognome.equalsIgnoreCase(GiocatoreDTO.ANONIMO.getCognome()))){ //Patch messa perchè quando si legge da un xlsx le API mettono zero come valore se la cella è vuota
+		if (idNazionale == null || idNazionale > 0 || (nome != null && nome.equalsIgnoreCase(GiocatoreDTO.ANONIMO.getNome()) && cognome != null && cognome.equalsIgnoreCase(GiocatoreDTO.ANONIMO.getCognome()))){ //Patch messa perchï¿½ quando si legge da un xlsx le API mettono zero come valore se la cella ï¿½ vuota
 			giocatore.setIdNazionale(idNazionale);
 		}
 		return giocatore;
@@ -530,7 +530,7 @@ public class ExcelAccess{
 			Row rowIntestazione = schedaTurno.createRow(prossimaRiga);
 			Cell cellIntestazione = rowIntestazione.createCell((short)0);
 			cellIntestazione.setCellStyle(styleIntestazione);
-			cellIntestazione.setCellValue("Tavolo N°"+partita.getNumeroTavolo());
+			cellIntestazione.setCellValue("Tavolo Nï¿½"+partita.getNumeroTavolo());
 			CellRangeAddress region = new CellRangeAddress(prossimaRiga,prossimaRiga,(short)0,(short)(partita.getNumeroGiocatori()*3-1));
 			try {
 				RegionUtil.setBorderBottom(BorderStyle.THIN,region,schedaTurno);
@@ -574,7 +574,7 @@ public class ExcelAccess{
 		Row rowIntestazione = schedaTurno.createRow(prossimaRiga);
 		Cell cellIntestazione = rowIntestazione.createCell((short)0);
 		cellIntestazione.setCellStyle(styleIntestazione);
-		cellIntestazione.setCellValue("Tavolo N°"+partita.getNumeroTavolo());
+		cellIntestazione.setCellValue("Tavolo Nï¿½"+partita.getNumeroTavolo());
 		CellRangeAddress region = new CellRangeAddress(prossimaRiga,prossimaRiga,(short)0,(short)(partita.getNumeroGiocatori()*3-1));
 		try {
 			RegionUtil.setBorderBottom(BorderStyle.THIN,region,schedaTurno);
@@ -896,7 +896,7 @@ public class ExcelAccess{
 				try{
 					id 	= (short)cellId.getNumericCellValue();
 				}catch(Exception nfe){
-					throw new MyException(nfe,"Colonna ID ("+((j*3)+1)+"°) con valore non numerico");
+					throw new MyException(nfe,"Colonna ID ("+((j*3)+1)+"ï¿½) con valore non numerico");
 				}
 				if (id != null && id.intValue() != 0){
 					Cell cellPunteggio = row.getCell((short)((j*3)+2));
@@ -904,7 +904,7 @@ public class ExcelAccess{
 					try{
 						punteggio = (float) cellPunteggio.getNumericCellValue();
 					}catch(Exception nfe){
-						throw new MyException(nfe,"Colonna Punteggio ("+((j*3)+2)+"°) con valore non numerico");
+						throw new MyException(nfe,"Colonna Punteggio ("+((j*3)+2)+"ï¿½) con valore non numerico");
 					}
 					GiocatoreDTO giocatore = new GiocatoreDTO();
 					giocatore.setId(id.intValue());
@@ -923,7 +923,7 @@ public class ExcelAccess{
 //							partita.setVincitore(giocatore);
 //						}
 					}else if (!giocatore.equals(GiocatoreDTO.FITTIZIO)){
-						throw new MyException("Nella lista dei giocatori non è presente quello con indice "+id);
+						throw new MyException("Nella lista dei giocatori non ï¿½ presente quello con indice "+id);
 					}
 				}
 			}
@@ -1295,7 +1295,7 @@ public class ExcelAccess{
 			for (Partita[] partite: listaPartiteTotali){
 				partiteGiocatore[indexTurno++] = inspectPartite(partite, giocatore);
 			}
-			if (partiteGiocatore[1] != null){//Introdotta novità nel 2020 in base alla quale solo chi ha giocato il 2° turno può andare in semifinale
+			if (partiteGiocatore[1] != null){//Introdotta novitï¿½ nel 2020 in base alla quale solo chi ha giocato il 2ï¿½ turno puï¿½ andare in semifinale
 				ScorePlayer scorePlayer = new ScorePlayerRaduno(giocatore,partiteGiocatore);
 				scores.add(scorePlayer);
 			}
