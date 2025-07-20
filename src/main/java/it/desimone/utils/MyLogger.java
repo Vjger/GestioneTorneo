@@ -24,7 +24,7 @@ public class MyLogger {
 	private static ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 	private static StreamHandler streamHandler = null;
 	private static FileHandler fileHandler = null;
-	private static DateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss");
+	private static DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
 	static{
 		
 		ClassLoader classLoader = ClassLoader.getSystemClassLoader();

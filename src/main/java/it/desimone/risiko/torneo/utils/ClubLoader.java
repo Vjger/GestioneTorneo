@@ -58,6 +58,8 @@ public class ClubLoader {
 	public final static ClubDTO QUARTU_SANT_ELENA = new ClubDTO("CA","Quartu Sant'Elena [Sardegna]");
 	public final static ClubDTO SESSA_AURUNCA = new ClubDTO("CS","Sessa Aurunca [Risiko Aurunco]");
 	public final static ClubDTO SIGNA = new ClubDTO("FI","Signa [Gli spettri dei colli]");
+	public final static ClubDTO SAN_CATALDO = new ClubDTO("CL","San Cataldo [Il Pifferaio]");
+	public final static ClubDTO TRADATE = new ClubDTO("VA","Tradate [I Galli]");
 
 	static{
 		clubs.add(I_FEDERICIANI);
@@ -109,6 +111,8 @@ public class ClubLoader {
 		clubs.add(QUARTU_SANT_ELENA);
 		clubs.add(SESSA_AURUNCA);
 		clubs.add(SIGNA);
+		clubs.add(SAN_CATALDO);
+		clubs.add(TRADATE);
 	}
 	
 	public static List<ClubDTO> getClubs(){

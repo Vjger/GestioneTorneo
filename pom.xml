@@ -4,7 +4,7 @@
 
   <groupId>it.desimone</groupId>
   <artifactId>GestioneTorneo</artifactId>
-  <version>2.3.6</version>
+  <version>2.3.7</version>
   <packaging>jar</packaging>
 
   <name>GestioneTorneo</name>

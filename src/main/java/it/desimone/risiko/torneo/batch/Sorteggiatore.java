@@ -58,7 +58,7 @@ public class Sorteggiatore {
 			break;
 		case TorneoGufo:
 		case Open:
-		case OpenMaster:
+		case Victory:
 			partiteTurno = getPartiteSorteggiateTorneoGufo(excelAccess, numeroTurno);
 			break;
 		case CampionatoGufo:

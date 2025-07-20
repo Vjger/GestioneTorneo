@@ -28,7 +28,7 @@ public class ResourceLoader {
 		}
 	}
 	
-	private static final String HELPFILE = "ManualeGestioneRaduno.pdf";
+	private static final String HELPFILE = "ManualeGestioneTorneo.pdf";
 	private static final String NOME_FILE_EXCEL = "ModuloTorneo.xls";
 	private static final String NOME_FILE_IMMAGINE_RISIKO = "image004_rid.png";
 	
@@ -68,7 +68,7 @@ public class ResourceLoader {
 	public File estraiManualeByFS(){
 		File manuale = new File("./resources/"+HELPFILE);
 		if (!manuale.exists()){
-			MyLogger.getLogger().severe("Non ï¿½ stato trovato il file "+manuale);
+			MyLogger.getLogger().severe("Non è stato trovato il file "+manuale);
 			return null;
 		}
 		MyLogger.getLogger().finer("Manuale: "+manuale.getAbsolutePath());

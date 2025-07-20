@@ -1,5 +1,6 @@
 package it.desimone.risiko.torneo.utils;
 
+import java.util.Collections;
 import java.util.Vector;
 
 public enum TipoTorneo {
@@ -9,7 +10,7 @@ public enum TipoTorneo {
 	,SantEufemia
 	,MasterRisiko
 	,MasterRisiko2015
-	,OpenMaster
+	,Victory
 	,Open
 	,TorneoGufo
 	,CampionatoGufo
@@ -30,7 +31,7 @@ public enum TipoTorneo {
 		//result.add(RadunoNazionale_con_quarti);
 		result.add(MasterRisiko);
 		//result.add(MasterRisiko2015);
-		result.add(OpenMaster);
+		result.add(Victory);
 		result.add(Open);
 		result.add(TorneoGufo);
 		result.add(CampionatoGufo);
@@ -39,6 +40,7 @@ public enum TipoTorneo {
 		result.add(_1vs1_);
 		result.add(_1vs1_SVIZZERA);
 		result.add(TorneoASquadre);
+		Collections.sort(result);
 		return result;
 	}
 	
