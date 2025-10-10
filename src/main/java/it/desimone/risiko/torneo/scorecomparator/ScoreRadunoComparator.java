@@ -2,6 +2,7 @@ package it.desimone.risiko.torneo.scorecomparator;
 
 import it.desimone.risiko.torneo.dto.Partita;
 import it.desimone.risiko.torneo.scoreplayer.ScorePlayer;
+import it.desimone.risiko.torneo.utils.RandomizerUtil;
 import it.desimone.utils.MyException;
 
 import java.util.Comparator;
@@ -135,6 +136,11 @@ public class ScoreRadunoComparator implements Comparator<ScorePlayer> {
 					}
 				}
 			}
+			
+			if (result == 0){
+				result = RandomizerUtil.getRandomLessOneOrPlusOne();
+			}
+			
 			break;	
 		case 0:
 			result = -1;
@@ -236,7 +242,7 @@ public class ScoreRadunoComparator implements Comparator<ScorePlayer> {
 				}
 			}
 		}
-		
+
 		return result;
 	}
 

@@ -4,12 +4,16 @@ import it.desimone.risiko.torneo.dto.GiocatoreDTO;
 import it.desimone.risiko.torneo.dto.Partita;
 import it.desimone.risiko.torneo.scoreplayer.ScorePlayer;
 import it.desimone.risiko.torneo.scoreplayer.ScorePlayerQualificazioniNazionale;
+import it.desimone.risiko.torneo.utils.RandomizerUtil;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
+
+import com.itextpdf.text.log.SysoLogger;
 
 public class ScoreQualificazioniNazionaleComparator implements Comparator<ScorePlayer> {
 	
@@ -85,6 +89,10 @@ public class ScoreQualificazioniNazionaleComparator implements Comparator<ScoreP
 			}
 		}
 		
+		if (result == 0){
+			result = RandomizerUtil.getRandomLessOneOrPlusOne();
+		}
+		
 		return result;
 	}
 	
@@ -100,16 +108,4 @@ public class ScoreQualificazioniNazionaleComparator implements Comparator<ScoreP
 		return list;
 	}
 	
-	public static void main (String[] s){
-		List<BigDecimal> list = new ArrayList<BigDecimal>();
-		list.add(BigDecimal.TEN);
-		list.add(new BigDecimal(3));
-		list.add(new BigDecimal(5));
-		list.add(new BigDecimal(1));
-		//Collections.sort(list);
-		System.out.println(list);
-		Comparator<BigDecimal> comp = Collections.reverseOrder();
-		Collections.sort(list, comp);
-		System.out.println(list);
-	}
 }

@@ -150,6 +150,8 @@ public class GeneratoreTavoliNew {
 		}else{
 			result = getTavoliCasuali(giocatori, tavoliVuoti);
 		}
+		
+		MyLogger.getLogger().exiting("GeneratoreTavoliNew", "getTavoliIniziali", ArrayUtils.fromPartiteToString(result));
 		MyLogger.getLogger().exiting("GeneratoreTavoliNew", "getTavoliIniziali");
 		return result;
 	}
@@ -1802,6 +1804,46 @@ public class GeneratoreTavoliNew {
 	}
 	
 	private static List<List<GiocatoreDTO>> getGiocatoriPerClub(List<GiocatoreDTO> giocatori){
+		
+		Comparator<List<GiocatoreDTO>> comparator = new Comparator<List<GiocatoreDTO>>(){
+			public int compare(List<GiocatoreDTO> o1, List<GiocatoreDTO> o2){
+				Integer i2 = o2.size();
+				Integer i1 = o1.size();
+				return i2.compareTo(i1);
+			}
+		};
+		List<List<GiocatoreDTO>> giocatoriPerClub = new ArrayList<List<GiocatoreDTO>>();
+		
+		List<GiocatoreDTO> listaDiLavoro = new ArrayList<GiocatoreDTO>(giocatori);
+		List<GiocatoreDTO> listaPerNoClub = new ArrayList<GiocatoreDTO>();
+		while (listaDiLavoro.size() >0){
+			ClubDTO club = listaDiLavoro.get(0).getClubProvenienza();
+			List<GiocatoreDTO> listaPerClub = new ArrayList<GiocatoreDTO>();
+			Iterator<GiocatoreDTO> iterator = listaDiLavoro.iterator();
+			while (iterator.hasNext()){
+				GiocatoreDTO giocatore = iterator.next();
+				if (giocatore.getClubProvenienza() != null && giocatore.getClubProvenienza().equals(club)){
+					listaPerClub.add(giocatore);
+					iterator.remove();
+				}else if (giocatore.getClubProvenienza() == null && club == null){
+					listaPerNoClub.add(giocatore);
+					iterator.remove();
+				}
+			}
+			if (club != null) {
+				Collections.shuffle(listaPerClub);
+				giocatoriPerClub.add(listaPerClub);
+			}
+		}
+		Collections.shuffle(listaPerNoClub);
+		Collections.sort(giocatoriPerClub,comparator);
+		//I noclub vanno sempre per ultimi
+		giocatoriPerClub.add(listaPerNoClub);
+		return giocatoriPerClub;
+	}
+	
+	
+	private static List<List<GiocatoreDTO>> getGiocatoriPerClubOLD(List<GiocatoreDTO> giocatori){
 		
 		Comparator<RegioneDTO> comparator = new Comparator(){
 			public int compare(Object o1, Object o2){

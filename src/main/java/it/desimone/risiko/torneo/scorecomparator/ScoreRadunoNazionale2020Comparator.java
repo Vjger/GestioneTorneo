@@ -3,6 +3,7 @@ package it.desimone.risiko.torneo.scorecomparator;
 import it.desimone.risiko.torneo.dto.GiocatoreDTO;
 import it.desimone.risiko.torneo.dto.Partita;
 import it.desimone.risiko.torneo.scoreplayer.ScorePlayer;
+import it.desimone.risiko.torneo.utils.RandomizerUtil;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -67,6 +68,10 @@ public class ScoreRadunoNazionale2020Comparator implements Comparator<ScorePlaye
 					}
 				}
 			}
+		}
+		
+		if (result == 0){
+			result = RandomizerUtil.getRandomLessOneOrPlusOne();
 		}
 		
 		return result;
