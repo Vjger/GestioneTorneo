@@ -1851,8 +1851,6 @@ public class Sorteggiatore {
 		List<PrioritaSorteggio> priorita = new ArrayList<PrioritaSorteggio>();
 		switch (numeroTurno) {
 		case 1:
-			priorita.add(PrioritaSorteggio.IMPEDITO_STESSO_CLUB);
-			priorita.add(PrioritaSorteggio.IMPEDITA_STESSA_REGIONE);
 			partiteTurno = GeneratoreTavoliNew.generaPartite(giocatoriPartecipanti, null, TipoTavoli.DA_4_ED_EVENTUALMENTE_DA_5, priorita);
 			break;
 		case 2:
@@ -1890,6 +1888,8 @@ public class Sorteggiatore {
 			
 			partitePrecedenti = listaPartitePrecedenti.toArray(new Partita[0]);
 			priorita.add(PrioritaSorteggio.MINIMIZZAZIONE_SCONTRI_DIRETTI);
+			priorita.add(PrioritaSorteggio.IMPEDITO_STESSO_CLUB);
+			priorita.add(PrioritaSorteggio.IMPEDITA_STESSA_REGIONE);
 			partiteTurno = GeneratoreTavoliNew.generaPartite(giocatoriPartecipanti, partitePrecedenti, TipoTavoli.DA_4_ED_EVENTUALMENTE_DA_5, priorita);
 			MyLogger.getLogger().fine(""+partiteTurno.length);
 			break;
